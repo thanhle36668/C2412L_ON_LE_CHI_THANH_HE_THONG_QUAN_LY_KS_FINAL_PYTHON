@@ -1,0 +1,29 @@
+# Byte-compiled / cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Dữ liệu sinh ra khi chạy chương trình
+khachsan_data.json
+
+# IDE / Editor
+.vscode/
+.idea/
+*.swp
+
+# Hệ điều hành
+.DS_Store
+Thumbs.db
+
+# Log & build
+*.log
+build/
+dist/
+*.egg-info/
