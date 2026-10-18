@@ -2,10 +2,14 @@ from models import PhongThuong, PhongVIP, KhachHang
 from services import QuanLyKhachSan
 from file_handler import save_data, load_data
 
-def nhap_so_nguyen(so):
+def nhap_so_nguyen(so, min_gia_tri = None):
     while True:
         try:
-            return int(input(so))
+            gia_tri = int(input(so))
+            if min_gia_tri is not None and gia_tri < min_gia_tri:
+                print(f"Vui lòng nhập số nguyên lớn hơn hoặc bằng {min_gia_tri}.")
+                continue
+            return gia_tri
         except ValueError:
             print("Vui lòng nhập một số nguyên hợp lệ.")
 
@@ -59,7 +63,7 @@ def dat_phong_moi(ql):
         print("Số CCCD không hợp lệ. Vui lòng nhập lại (9 hoặc 12 chữ số).")
     khach_hang = KhachHang(ma_khach, ten_khach, so_cccd)
 
-    so_ngay_thue = nhap_so_nguyen("Nhập số ngày thuê: ")
+    so_ngay_thue = nhap_so_nguyen("Nhập số ngày thuê: ", min_gia_tri=1)
 
     try:
         phieu_thue = ql.dat_phong(ma_phong, khach_hang, so_ngay_thue)

@@ -61,7 +61,12 @@ def load_data():
             phong = next((p for p in danh_sach_phong if p.ma_phong == pt["ma_phong"]), None)
 
             if phong is not None:
-                phieu_thue = PhieuThue(khach_hang, phong, pt["so_ngay_thue"])
+                try:
+                    phieu_thue = PhieuThue(khach_hang, phong, pt["so_ngay_thue"])
+                except ValueError:
+                    phong.trang_thai = "Trống"
+                    print(f"Bỏ qua phiếu thuê lỗi (mã phòng {pt['ma_phong']}) và trả phòng về Trống.")
+                    continue
                 danh_sach_phieu_thue.append(phieu_thue)
 
         danh_sach_doanh_thu = data.get("lich_su_doanh_thu", [])

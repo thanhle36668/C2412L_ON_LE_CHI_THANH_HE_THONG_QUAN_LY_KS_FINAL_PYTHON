@@ -46,3 +46,13 @@ class PhieuThue:
         self.khach_hang = khach_hang
         self.phong = phong
         self.so_ngay_thue = so_ngay_thue
+
+    @property
+    def so_ngay_thue(self):
+        return self._so_ngay_thue
+
+    @so_ngay_thue.setter
+    def so_ngay_thue(self, gia_tri_moi):
+        if gia_tri_moi <= 0:
+            raise ValueError("Số ngày thuê phải lớn hơn 0.")
+        self._so_ngay_thue = gia_tri_moi

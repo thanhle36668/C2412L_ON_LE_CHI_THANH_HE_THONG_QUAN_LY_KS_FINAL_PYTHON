@@ -13,6 +13,13 @@ class QuanLyKhachSan:
         for p in self.danh_sach_phong:
             if p.ma_phong == phong.ma_phong:
                 raise ValueError("Mã phòng đã tồn tại.")
+
+        if phong.gia_co_ban <= 0:
+            raise ValueError("Giá cơ bản phải lớn hơn 0.")
+        if isinstance(phong, PhongVIP):
+            if phong.phi_don_dep < 0 or phong.phi_minibar < 0:
+                raise ValueError("Phí dọn dẹp và phí minibar không được âm.")
+            
         self.danh_sach_phong.append(phong)
 
     def dat_phong(self, ma_phong, khach_hang, so_ngay_thue):
@@ -23,6 +30,9 @@ class QuanLyKhachSan:
 
         if phong_tim.trang_thai == "Đã thuê":
             raise ValueError("Phòng đã được thuê.")
+
+        if so_ngay_thue <= 0:
+            raise ValueError("Số ngày thuê phải lớn hơn 0.")
 
         phieu_thue = PhieuThue(khach_hang, phong_tim, so_ngay_thue)
         self.danh_sach_phieu_thue.append(phieu_thue)
